@@ -1,16 +1,16 @@
-﻿CREATE PROCEDURE Product_GetCategoryBySubcategory
-    @SubcategoryId INT
+﻿CREATE PROCEDURE [dbo].[Product_GetCategoryBySubcategory]
+    @SubCategoryId INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     SELECT 
-        c.Id AS CategoryId,
-        c.Name AS CategoryName
+        c.Id,
+        c.Name
     FROM 
-        Categories c
+        Category c
     INNER JOIN 
-        Subcategories sc ON c.Id = sc.CategoryId
+        Subcategory sc ON c.Id = sc.CategoryId
     WHERE 
         sc.Id = @SubcategoryId;
 END

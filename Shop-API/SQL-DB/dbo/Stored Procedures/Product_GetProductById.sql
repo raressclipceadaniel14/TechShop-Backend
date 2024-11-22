@@ -1,5 +1,5 @@
-﻿CREATE PROCEDURE Product_GetProductById
-    @Id INT
+﻿CREATE PROCEDURE [dbo].[Product_GetProductById]
+    @ProductId INT
 AS
 BEGIN
     SELECT 
@@ -14,5 +14,5 @@ BEGIN
     FROM 
         Product
     WHERE 
-        Id = @Id;
+        Id = @ProductId;
 END
