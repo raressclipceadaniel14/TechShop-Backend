@@ -23,7 +23,7 @@ namespace Shop_API.Controllers
         }
 
         [HttpPost("save-preorder")]
-        public async Task SavePreOrder(int userId, int productId)
+        public async Task SavePreOrder([FromBody] int userId, int productId)
         {
             await _preOrderBL.SavePreOrder(userId, productId);
         }
