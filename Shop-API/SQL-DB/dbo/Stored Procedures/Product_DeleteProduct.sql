@@ -1,7 +1,7 @@
-﻿CREATE PROCEDURE Product_DeleteProduct
-    @Id INT
+﻿CREATE PROCEDURE [dbo].[Product_DeleteProduct]
+    @productId INT
 AS
 BEGIN
     DELETE FROM Product
-    WHERE Id = @Id;
+    WHERE Id = @productId;
 END

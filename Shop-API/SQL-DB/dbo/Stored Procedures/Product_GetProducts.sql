@@ -1,4 +1,4 @@
-﻿CREATE   PROCEDURE Product_GetProducts
+﻿CREATE   PROCEDURE [dbo].[Product_GetProducts]
     @CategoryId INT,
     @SubcategoryId INT
 AS
@@ -10,7 +10,8 @@ BEGIN
         p.Price,
         p.IsAvailable,
         p.SubCategoryId,
-        p.ProviderId
+        p.ProviderId,
+		p.Picture
     FROM 
         Product p
     WHERE

@@ -1,4 +1,4 @@
-﻿  CREATE PROCEDURE Favorite_GetFavoriteByUser
+﻿  CREATE PROCEDURE [dbo].[Favorite_GetFavoriteByUser]
     @UserId INT
 AS
 BEGIN
@@ -12,7 +12,7 @@ BEGIN
         p.ProviderId,
         p.Picture
     FROM 
-        Products p
+        Product p
     INNER JOIN 
         Favorite f ON p.Id = f.ProductId
     WHERE 
