@@ -1,6 +1,8 @@
 ﻿using api.Repositories.Implementations;
 using Azure.Core;
 using Dapper;
+using Shop_API.BusinessLogic.Implementation;
+using Shop_API.Models.PreOrder;
 using Shop_API.Models.Product;
 using Shop_API.Repository.Interface;
 using System.Data;
@@ -11,6 +13,7 @@ namespace Shop_API.Repository.Implementation
     {
         private const string GetPreorderByUserSP = "PreOrder_GetPreorderByUser";
         private const string SavePreorderSP = "PreOrder_SavePreOrder";
+        private const string DeletePreOrderSP = "PreOrder_Delete";
 
         public PreOrderRepository(IConfiguration configuration) : base(configuration)
         {
@@ -29,15 +32,28 @@ namespace Shop_API.Repository.Implementation
             }
         }
 
-        public async Task SavePreOrder(int userId, int productId)
+        public async Task SavePreOrder(PreOrderSaveModel preOrderSaveModel)
         {
             using (var connection = ConnectionFactory(_configuration))
             {
                 await connection.ExecuteAsync(SavePreorderSP,
                 param: new
                 {
-                    userId, 
-                    productId
+                    preOrderSaveModel.UserId,
+                    preOrderSaveModel.ProductId
+                },
+                commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task DeletePreOrder(int userId)
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                await connection.ExecuteAsync(DeletePreOrderSP,
+                param: new
+                {
+                    userId
                 },
                 commandType: CommandType.StoredProcedure);
             }

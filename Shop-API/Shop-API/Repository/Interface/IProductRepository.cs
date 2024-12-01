@@ -1,4 +1,5 @@
-﻿using Shop_API.Models.Product;
+﻿using Shop_API.Models.Order;
+using Shop_API.Models.Product;
 
 namespace Shop_API.Repository.Interface
 {

@@ -6,8 +6,10 @@
     [OrderStatusId]   INT            NOT NULL,
     [PaymentMethodId] INT            NOT NULL,
     CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Order_Order] FOREIGN KEY ([OrderStatusId]) REFERENCES [dbo].[Order] ([Id]),
-    CONSTRAINT [FK_Order_Order1] FOREIGN KEY ([Id]) REFERENCES [dbo].[Order] ([Id]),
-    CONSTRAINT [FK_Order_PaymentMethod] FOREIGN KEY ([PaymentMethodId]) REFERENCES [dbo].[PaymentMethod] ([Id])
+    CONSTRAINT [FK_Order_OrderStatus] FOREIGN KEY ([OrderStatusId]) REFERENCES [dbo].[OrderStatus] ([Id]),
+    CONSTRAINT [FK_Order_PaymentMethod] FOREIGN KEY ([PaymentMethodId]) REFERENCES [dbo].[PaymentMethod] ([Id]),
+    CONSTRAINT [FK_Order_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Id])
 );
+
+
 

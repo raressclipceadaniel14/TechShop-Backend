@@ -1,4 +1,4 @@
-﻿ CREATE PROCEDURE PreOrder_GetPreorderByUser
+﻿ CREATE PROCEDURE [dbo].[PreOrder_GetPreorderByUser]
     @UserId INT
 AS
 BEGIN
@@ -12,7 +12,7 @@ BEGIN
         p.ProviderId,
         p.Picture
     FROM 
-        Products p
+        Product p
     INNER JOIN 
         PreOrder po ON p.Id = po.ProductId
     WHERE 

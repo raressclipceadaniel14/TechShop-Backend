@@ -59,6 +59,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -88,5 +89,10 @@
     <Build Include="dbo\Stored Procedures\Favorite_GetFavoriteByUser.sql" />
     <Build Include="dbo\Stored Procedures\Provider_GetProviders.sql" />
     <Build Include="dbo\Stored Procedures\Product_GetCategoryBySubcategory.sql" />
+    <Build Include="dbo\Stored Procedures\PreOrder_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\OrderProduct_InsertOrder.sql" />
+    <Build Include="dbo\Stored Procedures\Order_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Order_Create.sql" />
+    <Build Include="dbo\User Defined Types\ProductModelType.sql" />
   </ItemGroup>
 </Project>

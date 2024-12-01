@@ -72,6 +72,7 @@ builder.Services.AddScoped<IProductBL, ProductBL>();
 builder.Services.AddScoped<IPreOrderBL, PreOrderBL>();
 builder.Services.AddScoped<IFavoriteBL, FavoriteBL>();
 builder.Services.AddScoped<IProviderBL, ProviderBL>();
+builder.Services.AddScoped<IOrderBL, OrderBL>();
 
 //REPOSITORY
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
@@ -79,6 +80,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IPreOrderRepository, PreOrderRepository>();
 builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 //UTILS
 builder.Services.AddScoped<PasswordHasher>();

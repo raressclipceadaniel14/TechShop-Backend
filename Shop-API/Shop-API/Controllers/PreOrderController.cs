@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop_API.BusinessLogic.Interface;
+using Shop_API.Models.PreOrder;
 using Shop_API.Models.Product;
 
 namespace Shop_API.Controllers
@@ -23,9 +24,15 @@ namespace Shop_API.Controllers
         }
 
         [HttpPost("save-preorder")]
-        public async Task SavePreOrder([FromBody] int userId, int productId)
+        public async Task SavePreOrder([FromBody] PreOrderSaveModel preOrderSaveModel)
         {
-            await _preOrderBL.SavePreOrder(userId, productId);
+            await _preOrderBL.SavePreOrder(preOrderSaveModel);
+        }
+
+        [HttpPost("delete-preorder")]
+        public async Task DeletePreOrder([FromBody] int userId)
+        {
+            await _preOrderBL.DeletePreOrder(userId);
         }
     }
 }

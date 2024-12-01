@@ -1,4 +1,5 @@
 ﻿using Shop_API.BusinessLogic.Interface;
+using Shop_API.Models.PreOrder;
 using Shop_API.Models.Product;
 using Shop_API.Repository.Interface;
 
@@ -12,15 +13,21 @@ namespace Shop_API.BusinessLogic.Implementation
         {
             this._preOrderRepository = preOrderRepository;
         }
+
         public async Task<List<ProductModel>> GetPreorderByUserAsync(int userId)
         {
             var products = await _preOrderRepository.GetPreorderByUserAsync(userId);
             return products;
         }
 
-        public async Task SavePreOrder(int userId, int productId)
+        public async Task SavePreOrder(PreOrderSaveModel preOrderSaveModel)
         {
-            await _preOrderRepository.SavePreOrder(userId, productId);
+            await _preOrderRepository.SavePreOrder(preOrderSaveModel);
+        }
+
+        public async Task DeletePreOrder(int userId)
+        {
+            await _preOrderRepository.DeletePreOrder(userId);
         }
     }
 }
