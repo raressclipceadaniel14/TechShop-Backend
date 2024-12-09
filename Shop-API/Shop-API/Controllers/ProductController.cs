@@ -76,5 +76,11 @@ namespace Shop_API.Controllers
             var category = await _productBL.GetSubcategoryById(subCategoryId);
             return category;
         }
+
+        [HttpPost("modify-stock")]
+        public async Task ModifyStock(StockUpdateModel stockUpdate)
+        {
+            await _productBL.ModifyStock(stockUpdate);
+        }
     }
 }

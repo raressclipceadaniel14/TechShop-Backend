@@ -7,10 +7,10 @@ BEGIN
         Name,
         Description,
         Price,
-        IsAvailable,
         SubCategoryId,
         ProviderId,
-        Picture
+        Picture,
+		Stock
     FROM 
         Product
     WHERE 

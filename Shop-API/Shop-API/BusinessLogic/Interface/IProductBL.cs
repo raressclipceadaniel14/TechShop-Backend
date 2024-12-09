@@ -11,6 +11,7 @@ namespace Shop_API.BusinessLogic.Interface
         Task<List<ProductModel>> GetProductsAsync(GetProductModelRequest request);
         Task<List<CategoryModel>> GetSubCategoriesAsync(int categroyId);
         Task<SubcategoryModel> GetSubcategoryById(int subCategoryId);
+        Task ModifyStock(StockUpdateModel stockUpdate);
         Task SaveProductsAsync(SaveProductRequest request);
         Task UpdateProductsAsync(ProductModel request);
     }

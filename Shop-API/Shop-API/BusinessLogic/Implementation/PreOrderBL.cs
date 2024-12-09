@@ -29,5 +29,10 @@ namespace Shop_API.BusinessLogic.Implementation
         {
             await _preOrderRepository.DeletePreOrder(userId);
         }
+
+        public async Task DeleteFromCart(PreOrderSaveModel preOrderSaveModel)
+        {
+            await _preOrderRepository.DeleteFromCart(preOrderSaveModel);
+        }
     }
 }

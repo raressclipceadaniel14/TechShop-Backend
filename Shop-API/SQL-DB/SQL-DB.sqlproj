@@ -94,5 +94,7 @@
     <Build Include="dbo\Stored Procedures\Order_Get.sql" />
     <Build Include="dbo\Stored Procedures\Order_Create.sql" />
     <Build Include="dbo\User Defined Types\ProductModelType.sql" />
+    <Build Include="dbo\Stored Procedures\Product_ModifyStock.sql" />
+    <Build Include="dbo\Stored Procedures\PreOrder_DeleteFromCart.sql" />
   </ItemGroup>
 </Project>

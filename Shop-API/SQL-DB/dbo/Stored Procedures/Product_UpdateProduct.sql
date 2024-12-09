@@ -1,12 +1,12 @@
-﻿CREATE PROCEDURE Product_UpdateProduct
+﻿CREATE PROCEDURE [dbo].[Product_UpdateProduct]
     @Id INT,
     @Name NVARCHAR(255),
     @Description NVARCHAR(MAX),
     @Price INT,
-    @IsAvailable BIT,
     @SubCategoryId INT,
     @ProviderId INT,
-    @Picture NVARCHAR(MAX)
+    @Picture NVARCHAR(MAX),
+	@Stock INT
 AS
 BEGIN
     UPDATE Product
@@ -14,10 +14,10 @@ BEGIN
         Name = @Name,
         Description = @Description,
         Price = @Price,
-        IsAvailable = @IsAvailable,
         SubCategoryId = @SubCategoryId,
         ProviderId = @ProviderId,
-        Picture = @Picture
+        Picture = @Picture,
+		Stock = @Stock
     WHERE 
         Id = @Id;
 END

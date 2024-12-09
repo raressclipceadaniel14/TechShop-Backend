@@ -64,5 +64,10 @@ namespace Shop_API.BusinessLogic.Implementation
             var category = await _productRepository.GetSubcategoryById(subCategoryId);
             return category;
         }
+
+        public async Task ModifyStock(StockUpdateModel stockUpdate)
+        {
+            await _productRepository.ModifyStock(stockUpdate);
+        }
     }
 }

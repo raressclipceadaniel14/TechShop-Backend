@@ -19,6 +19,7 @@ namespace Shop_API.Repository.Implementation
         private const string GetProductSP = "Product_GetProductById";
         private const string GetCategoryBySubcategorySP = "Product_GetCategoryBySubcategory";
         private const string GetSubcategoryByIdSP = "Product_GetCategoryById";
+        private const string ModifyStockSP = "Product_ModifyStock";
 
         public ProductRepository(IConfiguration configuration) : base(configuration)
         {
@@ -70,10 +71,10 @@ namespace Shop_API.Repository.Implementation
                     request.Name,
                     request.Description,
                     request.Price,
-                    request.IsAvailable,
                     request.SubCategoryId,
                     request.ProviderId,
-                    request.Picture
+                    request.Picture,
+                    request.Stock
                 },
                 commandType: CommandType.StoredProcedure);
             }
@@ -90,10 +91,10 @@ namespace Shop_API.Repository.Implementation
                     request.Name,
                     request.Description,
                     request.Price,
-                    request.IsAvailable,
                     request.SubCategoryId,
                     request.ProviderId,
-                    request.Picture
+                    request.Picture,
+                    request.Stock
                 },
                 commandType: CommandType.StoredProcedure);
             }
@@ -148,6 +149,20 @@ namespace Shop_API.Repository.Implementation
                         subCategoryId
                     },
                     commandType: CommandType.StoredProcedure));
+            }
+        }
+
+        public async Task ModifyStock(StockUpdateModel stockUpdate)
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                await connection.ExecuteAsync(ModifyStockSP,
+                param: new
+                {
+                    stockUpdate.ProductId,
+                    stockUpdate.ModifyBy
+                },
+                commandType: CommandType.StoredProcedure);
             }
         }
     }

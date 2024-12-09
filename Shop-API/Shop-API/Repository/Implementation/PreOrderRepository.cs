@@ -14,6 +14,7 @@ namespace Shop_API.Repository.Implementation
         private const string GetPreorderByUserSP = "PreOrder_GetPreorderByUser";
         private const string SavePreorderSP = "PreOrder_SavePreOrder";
         private const string DeletePreOrderSP = "PreOrder_Delete";
+        private const string DeleteFromCartSP = "PreOrder_DeleteFromCart";
 
         public PreOrderRepository(IConfiguration configuration) : base(configuration)
         {
@@ -54,6 +55,20 @@ namespace Shop_API.Repository.Implementation
                 param: new
                 {
                     userId
+                },
+                commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task DeleteFromCart(PreOrderSaveModel preOrderSaveModel)
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                await connection.ExecuteAsync(DeleteFromCartSP,
+                param: new
+                {
+                    preOrderSaveModel.UserId,
+                    preOrderSaveModel.ProductId,
                 },
                 commandType: CommandType.StoredProcedure);
             }

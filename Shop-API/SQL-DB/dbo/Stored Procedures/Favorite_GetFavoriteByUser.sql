@@ -7,10 +7,10 @@ BEGIN
         p.Name,
         p.Description,
         p.Price,
-        p.IsAvailable,
         p.SubCategoryId,
         p.ProviderId,
-        p.Picture
+        p.Picture,
+		p.Stock
     FROM 
         Product p
     INNER JOIN 

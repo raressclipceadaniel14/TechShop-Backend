@@ -34,5 +34,11 @@ namespace Shop_API.Controllers
         {
             await _preOrderBL.DeletePreOrder(userId);
         }
+
+        [HttpPost("remove-from-cart")]
+        public async Task DeleteFromCart([FromBody] PreOrderSaveModel preOrderSaveModel)
+        {
+            await _preOrderBL.DeleteFromCart(preOrderSaveModel);
+        }
     }
 }

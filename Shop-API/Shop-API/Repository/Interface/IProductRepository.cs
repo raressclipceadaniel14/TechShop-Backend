@@ -14,5 +14,6 @@ namespace Shop_API.Repository.Interface
         Task<ProductModel> GetProductByIdAsync(int productId);
         Task<CategoryModel> GetCategoryBySubcategory(int subCategoryId);
         Task<SubcategoryModel> GetSubcategoryById(int subCategoryId);
+        Task ModifyStock(StockUpdateModel stockUpdate);
     }
 }
