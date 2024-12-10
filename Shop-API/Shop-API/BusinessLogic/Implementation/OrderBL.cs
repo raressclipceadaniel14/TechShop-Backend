@@ -34,5 +34,16 @@ namespace Shop_API.BusinessLogic.Implementation
             await _orderRepository.SaveProductsInOrder(productIdS, order);
             await _preOrderRepository.DeletePreOrder(placeOrderModel.UserId);
         }
+
+        public async Task<List<GetOrdersModel>> GetOrders()
+        {
+            var orders = await _orderRepository.GetOrders();
+            foreach(var order in orders)
+            {
+                var products = await _orderRepository.GetProductsByOrderId(order.Id);
+                order.Products = products;
+            }
+            return orders;
+        }
     }
 }

@@ -14,6 +14,8 @@ namespace Shop_API.Repository.Implementation
         private const string SaveFavoriteSP = "Order_Create";
         private const string GetLastOrderByUserSP = "Order_Get";
         private const string SavePoductsInOrderSP = "OrderProduct_InsertOrder";
+        private const string GetOrdersSP = "OrderProduct_GetOrders";
+        private const string GetProductsByOrderIdSP = "OrderProduct_GetProductsByOrderId";
 
         public OrderRepository(IConfiguration configuration) : base(configuration)
         {
@@ -66,6 +68,28 @@ namespace Shop_API.Repository.Implementation
                     },
                     commandType: CommandType.StoredProcedure
                 );
+            }
+        }
+
+        public async Task<List<GetOrdersModel>> GetOrders()
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                return (await connection.QueryAsync<GetOrdersModel>(GetOrdersSP,
+                    commandType: CommandType.StoredProcedure)).ToList();
+            }
+        }
+
+        public async Task<List<ProductModel>> GetProductsByOrderId(int orderId)
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                return (await connection.QueryAsync<ProductModel>(GetProductsByOrderIdSP,
+                    param: new
+                    {
+                        orderId
+                    },
+                    commandType: CommandType.StoredProcedure)).ToList();
             }
         }
     }

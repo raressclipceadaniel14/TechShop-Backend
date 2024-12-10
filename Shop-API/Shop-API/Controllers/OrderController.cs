@@ -20,5 +20,12 @@ namespace Shop_API.Controllers
         {
             await _orderBL.PlaceOrder(placeOrderModel);
         }
+
+        [HttpGet("get-orders")]
+        public async Task<IEnumerable<GetOrdersModel>> GetOrders()
+        {
+            var orders = await _orderBL.GetOrders();
+            return orders;
+        }
     }
 }
