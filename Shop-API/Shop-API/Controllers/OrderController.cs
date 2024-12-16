@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop_API.BusinessLogic.Implementation;
 using Shop_API.BusinessLogic.Interface;
 using Shop_API.Models.Order;
 
@@ -26,6 +27,13 @@ namespace Shop_API.Controllers
         {
             var orders = await _orderBL.GetOrders();
             return orders;
+        }
+
+
+        [HttpPost("update-status")]
+        public async Task UpdateStatus([FromBody] int orderId)
+        {
+            await _orderBL.UpdateStatus(orderId);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Shop_API.Repository.Implementation
         private const string SavePoductsInOrderSP = "OrderProduct_InsertOrder";
         private const string GetOrdersSP = "OrderProduct_GetOrders";
         private const string GetProductsByOrderIdSP = "OrderProduct_GetProductsByOrderId";
+        private const string UpdateStatusSP = "Order_UpdateStatus";
 
         public OrderRepository(IConfiguration configuration) : base(configuration)
         {
@@ -90,6 +91,19 @@ namespace Shop_API.Repository.Implementation
                         orderId
                     },
                     commandType: CommandType.StoredProcedure)).ToList();
+            }
+        }
+
+        public async Task UpdateStatus(int orderId)
+        {
+            using (var connection = ConnectionFactory(_configuration))
+            {
+                await connection.ExecuteAsync(UpdateStatusSP,
+                    param: new
+                    {
+                        orderId
+                    },
+                    commandType: CommandType.StoredProcedure);
             }
         }
     }

@@ -6,5 +6,6 @@ namespace Shop_API.BusinessLogic.Interface
     {
         Task<List<GetOrdersModel>> GetOrders();
         Task PlaceOrder(AddOrderModel placeOrderModel);
+        Task UpdateStatus(int orderId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Shop_API.BusinessLogic.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
+using Shop_API.BusinessLogic.Interface;
 using Shop_API.Models.Order;
 using Shop_API.Models.Product;
 using Shop_API.Repository.Interface;
@@ -44,6 +45,11 @@ namespace Shop_API.BusinessLogic.Implementation
                 order.Products = products;
             }
             return orders;
+        }
+
+        public async Task UpdateStatus(int orderId)
+        {
+            await _orderRepository.UpdateStatus(orderId);
         }
     }
 }

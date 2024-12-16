@@ -10,5 +10,6 @@ namespace Shop_API.Repository.Interface
         Task<List<GetOrdersModel>> GetOrders();
         Task SaveProductsInOrder(List<int> productsId, int orderId);
         Task<List<ProductModel>> GetProductsByOrderId(int orderId);
+        Task UpdateStatus(int orderId);
     }
 }
