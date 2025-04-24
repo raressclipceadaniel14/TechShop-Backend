@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop_API.BusinessLogic.Interface;
 using Shop_API.Models.Product;
-using Shop_API.Repository.Implementation;
+using Shop_API.Services;
 
 namespace Shop_API.Controllers
 {
@@ -15,6 +15,35 @@ namespace Shop_API.Controllers
         {
             this._productBL = productBL;
         }
+
+        [HttpGet("search-specifications")]
+        public ActionResult<List<SearchResultDto>> SearchSpecifications([FromQuery] string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query cannot be empty");
+
+            var luceneSearcher = new SpecificationSearcher();
+            var results = luceneSearcher.Search(query);
+            return Ok(results);
+        }
+
+        [HttpPost("build-spec-index")]
+        public IActionResult BuildSpecIndex()
+        {
+            // Example data — replace with real specifications
+            var specs = new List<SpecificationModel>
+            {
+                new SpecificationModel { Id = 1, Content = "Resolution: 1900x1200, RAM: 16GB" },
+                new SpecificationModel { Id = 2, Content = "Screen size: 15.6 inch, CPU: Intel i5" },
+                new SpecificationModel { Id = 3, Content = "Graphics: GTX 1050 Ti, Storage: 512GB SSD" }
+            };
+
+            var indexer = new SpecificationIndexer();
+            indexer.IndexSpecifications(specs);
+
+            return Ok("Index built successfully.");
+        }
+
 
         [HttpGet("get-products")]
         public async Task<IEnumerable<ProductModel>> GetProductsAsync([FromQuery] GetProductModelRequest request)
