@@ -44,6 +44,18 @@ namespace Shop_API.Controllers
             return Ok("Index built successfully.");
         }
 
+        [HttpPost("index-pdf-spec")]
+        public IActionResult IndexPdfSpec()
+        {
+            var indexer = new SpecificationIndexer();
+
+            // 🔧 Use your actual PDF path here
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "Docs", "Mobile1.pdf");
+
+            indexer.IndexSpecificationFromPdf(path, id: 1);
+
+            return Ok("PDF indexed successfully.");
+        }
 
         [HttpGet("get-products")]
         public async Task<IEnumerable<ProductModel>> GetProductsAsync([FromQuery] GetProductModelRequest request)

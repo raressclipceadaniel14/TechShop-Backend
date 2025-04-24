@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 using Lucene.Net.Store;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Standard;
@@ -6,6 +7,8 @@ using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Util;
 using Shop_API.Models.Product;
+using UglyToad.PdfPig.Content;
+using UglyToad.PdfPig;
 
 namespace Shop_API.Services
 {
@@ -45,6 +48,31 @@ namespace Shop_API.Services
             }
 
             writer.Flush(true, true);
+        }
+
+        public void IndexSpecificationFromPdf(string pdfFilePath, int id)
+        {
+            using var pdf = PdfDocument.Open(pdfFilePath);
+            var contentBuilder = new StringBuilder();
+
+            foreach (Page page in pdf.GetPages())
+            {
+                contentBuilder.AppendLine(page.Text);
+            }
+
+            string content = contentBuilder.ToString();
+
+            var indexConfig = new IndexWriterConfig(_luceneVersion, _analyzer);
+            using var writer = new IndexWriter(_luceneIndexDirectory, indexConfig);
+
+            var doc = new Document
+            {
+                new StringField("Id", id.ToString(), Field.Store.YES),
+                new TextField("Content", content, Field.Store.YES)
+            };
+
+            writer.AddDocument(doc);
+            writer.Flush(triggerMerge: false, applyAllDeletes: false);
         }
     }
 }
